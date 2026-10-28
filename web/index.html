@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f6fb">
+  <title>MNIST 手写数字识别</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">CNN</div>
+        <div>
+          <h1>MNIST 手写数字识别</h1>
+          <p>PyTorch CNN · 本机运行</p>
+        </div>
+      </div>
+      <button id="exitButton" class="button button-danger" type="button">退出程序</button>
+    </header>
+
+    <section class="toolbar card" aria-label="识别操作">
+      <div class="camera-controls">
+        <select id="cameraSelect" aria-label="选择摄像头" disabled>
+          <option value="">打开摄像头后选择设备</option>
+        </select>
+        <button id="startCameraButton" class="button button-primary" type="button">打开摄像头</button>
+        <button id="stopCameraButton" class="button" type="button" disabled>关闭摄像头</button>
+        <button id="refreshCameraButton" class="button" type="button">刷新设备</button>
+      </div>
+      <div class="recognition-controls">
+        <label class="button upload-button" for="imageInput">上传图片</label>
+        <input id="imageInput" type="file" accept="image/png,image/jpeg,image/bmp,image/webp" hidden>
+        <button id="recognizeButton" class="button button-primary" type="button" disabled>识别区域</button>
+        <button id="resetRegionButton" class="button" type="button" disabled>清除框选</button>
+      </div>
+    </section>
+
+    <main class="content-grid">
+      <section class="card preview-card">
+        <div class="section-heading">
+          <div>
+            <h2>图像预览</h2>
+            <p>按住鼠标左键拖动，框选一个数字后点击“识别区域”</p>
+          </div>
+          <span id="sourceBadge" class="source-badge">未选择输入</span>
+        </div>
+        <div id="previewStage" class="preview-stage">
+          <div id="emptyState" class="empty-state">
+            <div class="empty-icon">✎</div>
+            <strong>打开摄像头或上传一张图片</strong>
+            <span>支持在预览画面中拖框选择识别区域</span>
+          </div>
+          <video id="cameraVideo" autoplay muted playsinline hidden></video>
+          <canvas id="previewCanvas" width="960" height="540" hidden></canvas>
+        </div>
+        <div class="preview-footer">
+          <span>快捷键：空格识别 · R 清除框选 · C 清空记录 · ESC 取消框选 · Q 退出</span>
+          <span id="imageDimensions">—</span>
+        </div>
+      </section>
+
+      <aside class="right-column">
+        <section class="card result-card">
+          <div class="section-heading compact-heading">
+            <div>
+              <h2>识别结果</h2>
+              <p>当前选区的 CNN 预测</p>
+            </div>
+          </div>
+          <div class="prediction-display">
+            <div id="predictionDigit" class="prediction-digit">—</div>
+            <div class="confidence-block">
+              <span>置信度</span>
+              <strong id="confidenceValue">—</strong>
+            </div>
+          </div>
+          <div class="processed-row">
+            <div>
+              <h3>模型输入（28×28）</h3>
+              <p>实际送入模型的预处理结果</p>
+            </div>
+            <div class="processed-image-wrap">
+              <img id="processedImage" alt="预处理后的 28×28 数字" hidden>
+              <span id="processedPlaceholder">等待识别</span>
+            </div>
+          </div>
+          <p id="statusMessage" class="status-message" role="status">就绪</p>
+        </section>
+
+        <section class="card history-card">
+          <div class="section-heading compact-heading">
+            <div>
+              <h2>最近识别</h2>
+              <p>最多保留 5 条记录</p>
+            </div>
+            <button id="clearHistoryButton" class="text-button" type="button">清空</button>
+          </div>
+          <ol id="historyList" class="history-list">
+            <li class="history-empty">还没有识别记录</li>
+          </ol>
+        </section>
+      </aside>
+    </main>
+    <footer class="page-footer">本地网页界面 · 图像仅发送到本机 Python 服务进行识别</footer>
+  </div>
+</body>
+</html>
