@@ -255,6 +255,16 @@ python train.py --lr 0.002
 
 重要实验应及时备份 `outputs/` 中的结果和对应 checkpoint，因为重复运行可能覆盖旧文件。
 
+## 参考资料
+
+以下资料与本项目实际使用的 MNIST 数据集、卷积神经网络（CNN）、PyTorch 框架、Adam 优化器和 Otsu 图像二值化方法对应。
+
+1. LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P. (1998). [Gradient-based learning applied to document recognition](https://doi.org/10.1109/5.726791). *Proceedings of the IEEE*, 86(11), 2278–2324. DOI: `10.1109/5.726791`.
+2. Deng, L. (2012). [The MNIST Database of Handwritten Digit Images for Machine Learning Research](https://doi.org/10.1109/MSP.2012.2211477). *IEEE Signal Processing Magazine*, 29(6), 141–142. DOI: `10.1109/MSP.2012.2211477`.
+3. Paszke, A., et al. (2019). [PyTorch: An Imperative Style, High-Performance Deep Learning Library](https://papers.neurips.cc/paper/9015-pytorch-an-imperative-stylehigh-performance-deep-learning-library). In *Advances in Neural Information Processing Systems 32*, 8026–8037.
+4. Kingma, D. P., & Ba, J. (2015). [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980). In *3rd International Conference on Learning Representations (ICLR 2015)*. arXiv:1412.6980.
+5. Otsu, N. (1979). [A Threshold Selection Method from Gray-Level Histograms](https://doi.org/10.1109/TSMC.1979.4310076). *IEEE Transactions on Systems, Man, and Cybernetics*, 9(1), 62–66. DOI: `10.1109/TSMC.1979.4310076`.
+
 ## 常见问题
 
 - **`py -3.10` 找不到解释器：** 安装 Python 3.10 并确认 `py -0p` 中存在对应版本。
